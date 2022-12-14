@@ -44,7 +44,7 @@ export default function DeleteConfirmationModal(props) {
             (reFetchInterviews) => reFetchInterviews + 1
           );
           props.setOpenConfirmationModal(false);
-          toast.success("Deleted selected applicants.", {
+          toast.success("Deleted selected students.", {
             position: "bottom-right",
             autoClose: 4000,
             hideProgressBar: false,
@@ -61,7 +61,7 @@ export default function DeleteConfirmationModal(props) {
       props.applicantIds.map((value, index) => {
         axios({
           method: "patch",
-          url: `http://localhost:8000/api/applicants/${value}/`,
+          url: `http://localhost:8000/api/students/${value}/`,
           headers: {
             Authorization: "Token " + localStorage.getItem("token"),
           },

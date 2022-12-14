@@ -18,7 +18,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
-import { InfoRounded } from "@mui/icons-material"
+import { InfoRounded } from "@mui/icons-material";
 
 const style = {
   position: "absolute",
@@ -37,7 +37,7 @@ const colorTypographyStyle = {
   background: `linear-gradient(to right, rgba(218,111,158,1) 0%, rgba(25,118,210,1) 100%)`,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: `transparent`,
-}
+};
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -121,9 +121,7 @@ function AppDrawer(props) {
     (state) => state.drawer.selectedSeasonId
   );
 
-  const selectedRound = useSelector(
-    (state) => state.season.selectedRound
-  )
+  const selectedRound = useSelector((state) => state.season.selectedRound);
 
   const handleRoundChange = (round) => {
     round.round_type === "T"
@@ -167,15 +165,20 @@ function AppDrawer(props) {
                 }}
               >
                 <ListItemText
-                disableTypography
+                  disableTypography
                   primary={
-                    <Typography sx={ selectedRound && selectedRound === round.id && colorTypographyStyle}>{
-                    round.round_name.length > 25
-                      ? round.round_name.substr(0, 25) + "..."
-                      : round.round_name}
+                    <Typography
+                      sx={
+                        selectedRound &&
+                        selectedRound === round.id &&
+                        colorTypographyStyle
+                      }
+                    >
+                      {round.round_name.length > 25
+                        ? round.round_name.substr(0, 25) + "..."
+                        : round.round_name}
                     </Typography>
                   }
-                  
                 />
               </ListItemButton>
             </ListItem>
@@ -195,14 +198,7 @@ function AppDrawer(props) {
 
   const addRoundBtn = (
     <div className={addRoundBtnContainer}>
-      <Button
-        variant="contained"
-        onClick={() => setOpen(true)}
-        sx={
-          {
-          }
-        }
-      >
+      <Button variant="contained" onClick={() => setOpen(true)} sx={{}}>
         + Add Round
       </Button>
     </div>
@@ -225,62 +221,80 @@ function AppDrawer(props) {
             color: `black`,
           }}
         >
-          <Typography
-            variant="h6"
-            sx={colorTypographyStyle}
-          >
+          <Typography variant="h6" sx={colorTypographyStyle}>
             IMG Recruitments
           </Typography>
         </Link>
       </Box>
       <Divider />
-      {isRoundsListVisible ? (
-        roundsList
-      ) : currentUser && 
-      <div className={profileDetailsContainer}>
-        <Typography variant="h5" sx={{
-          marginBottom: `20px`,
-          background: `linear-gradient(to right, rgba(218,111,158,1) 0%, rgba(25,118,210,1) 100%)`,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: `transparent`,
-        }}>
-          <InfoRounded sx={{
-            marginTop: `-3px`,
-            marginRight: `3px`,
-            color: `#c270a4`,
-          }}/><b>Your Info</b>
-        </Typography>
-        <img src={currentUser.image} style={{
-          width: `140px`,
-          height: `auto`,
-          borderRadius: `50%`,
-        }}/>
-        <Typography variant="h6" sx={{
-          textAlign: `center`,
-        }}>
-          <b>{currentUser.name}</b>
-        </Typography>
-        <Typography variant="subtitle1">
-        {currentUser.enrolment_number} 
-        </Typography>
-        <Typography variant="subtitle1" sx={{
-          textAlign: `center`,
-        }}>
-          {currentUser.branch}
-        </Typography>
-        <Typography variant="subtitle1" sx={{
-          textAlign: `center`,
-        }}>
-          {currentUser.year} Year
-        </Typography>
+      {isRoundsListVisible
+        ? roundsList
+        : currentUser && (
+            <div className={profileDetailsContainer}>
+              <Typography
+                variant="h5"
+                sx={{
+                  marginBottom: `20px`,
+                  background: `linear-gradient(to right, rgba(218,111,158,1) 0%, rgba(25,118,210,1) 100%)`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: `transparent`,
+                }}
+              >
+                <InfoRounded
+                  sx={{
+                    marginTop: `-3px`,
+                    marginRight: `3px`,
+                    color: `#c270a4`,
+                  }}
+                />
+                <b>Your Info</b>
+              </Typography>
+              <img
+                src={currentUser.image}
+                style={{
+                  width: `140px`,
+                  height: `auto`,
+                  borderRadius: `50%`,
+                }}
+              />
+              <Typography
+                variant="h6"
+                sx={{
+                  textAlign: `center`,
+                }}
+              >
+                <b>{currentUser.name}</b>
+              </Typography>
+              <Typography variant="subtitle1">
+                {currentUser.enrolment_number}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: `center`,
+                }}
+              >
+                {currentUser.branch}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: `center`,
+                }}
+              >
+                {currentUser.year} Year
+              </Typography>
 
-        <Typography variant="subtitle1" sx={{
-          textAlign: `center`,
-        }}>
-          {currentUser.email} 
-        </Typography>
-      </div>
-      }
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: `center`,
+                }}
+              >
+                {currentUser.email}
+              </Typography>
+            </div>
+          )}
       {isRoundsListVisible ? addRoundBtn : <></>}
     </div>
   );

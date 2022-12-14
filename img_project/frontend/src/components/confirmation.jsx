@@ -63,7 +63,7 @@ export default function ConfirmationModal(props) {
       props.applicantIds.map((value, index) => {
         axios({
           method: "patch",
-          url: `http://localhost:8000/api/applicants/${value}/`,
+          url: `http://localhost:8000/api/students/${value}/`,
           headers: {
             Authorization: "Token " + localStorage.getItem("token"),
           },
@@ -74,7 +74,7 @@ export default function ConfirmationModal(props) {
         }).then((response) => {
           props.setSelectedRound("");
           props.setOpenConfirmationModal(false);
-          toast.success("Added selected applicants.", {
+          toast.success("Added students.", {
             position: "bottom-right",
             autoClose: 4000,
             hideProgressBar: false,
@@ -102,7 +102,7 @@ export default function ConfirmationModal(props) {
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h5" component="h2">
-          Moving the selected applicants to {String(props.roundName)}
+          Moving the selected students to {String(props.roundName)}
         </Typography>
         <Box sx={buttonContainerStyle}>
           <Button
